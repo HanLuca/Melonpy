@@ -1,7 +1,11 @@
 from melonapi import scrapeMelon
 import json
 
-dd= json.loads(scrapeMelon.getList('LIVE').decode()) # string -> dic
-print(dd["1"])
+MelonChart = json.loads(scrapeMelon.getList('LIVE').decode()) # string -> dic
 
-# https://github.com/ko28/melon-api/blob/master/README.md
+for i in range(1, 101):
+    print(
+        MelonChart[str(i)],
+        end= '\n'
+    )
+
