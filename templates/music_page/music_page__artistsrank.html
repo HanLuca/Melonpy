@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" /> 	
+	
+	<title>Melonpy : Statistics</title>
+	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='music_page/music_page__statistics.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='total.css') }}">
+
+	<script src="https://kit.fontawesome.com/d15d3797c1.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<style>
+
+	.listNumberFont {
+		vertical-align: middle;
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.contentFont {
+		vertical-align: middle;
+		font-size: 20px;
+		font-weight: 500;
+		color: black;
+	}
+
+	.subFont { 
+		font-size: 15px; 
+		color: gray; 
+		margin: 0;
+	}
+	
+</style>
+	
+<body>
+	
+	<header>
+		<div class="menu">
+			<ul>
+				<li>
+					<a href="{{ url_for('mainPage.mainPage__Main') }}">Home</a>
+				</li>
+				<li>
+					<a href="{{ url_for('mainPage.mainPage__Top100') }}">Top100</a>
+				</li>
+				<li>
+					<a href="{{ url_for('musicPage.musicPage__ArtistsRank') }}">Artist Rank</a>
+				</li>
+				<li>
+					<a href="#">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<content>
+		<div class="contentBox">
+			<span class="material-symbols-outlined" style="vertical-align: middle; color: red;">nest_remote_comfort_sensor</span>
+			<span style="vertical-align: middle; font-weight: bold; font-size: 25px; color: red;">
+				LIVE! <span style="color: black;">ARTISTS RANK</span><br>
+			</span>
+			
+			{% for i in range(0, 5) %}
+				{% for k in range(0, Statistics['mode'][i] | length) %}
+					<li style="display: flex; align-items: center; margin-top: 20px;">
+						<span class="listNumberFont">{{ listNumbers(i) }}</span>
+						<div style="margin-left: 20px;">
+							<a href="{{ url_for('musicPage.musicPage__Artists', name=Statistics['mode'][i][k]) }}" class="contentFont">
+								{{ Statistics['mode'][i][k] }}
+							</a><br>
+							<span class="subFont">
+								<span style="vertical-align: middle;">{{ iconList[i] | safe }}</span> 
+								{{ Statistics['modeIndex'][i] }}곡의 노래 
+							</span>
+						</div>
+					</li>
+
+				{% endfor %}
+			{% endfor %}
+		</div>
+		
+	</content>
+
+	<footer>
+		Copyright &copy; 2024 <br>
+		Made by. HanLuca <br><br>
+
+		<a href=""> <!-- Discord -->
+			<i class="fa-brands fa-discord"></i> 
+		</a>
+		<a href="https://www.instagram.com/tmdwns._.2023/"> <!-- Instagram -->
+			<i class="fa-brands fa-instagram"></i>
+		</a>
+
+		<br><br>
+		<span style="font-size: 12px;">
+			이 서비스의 모든 저작권은 
+			<a href="https://www.melon.com/" style="color: #05e532;">멜론음원사이트</a> 와
+	 		<a href="" style="color: #0097b2;">Melonpy</a> 에게 존재합니다.
+		</span>
+	</footer>
+	
+</body>
+</html>
