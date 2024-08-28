@@ -27,7 +27,8 @@ def musicPage__Lyric(songid):
 	return render_template(
 		'music_page__lyric.html',
 		title='Melonpy : Lyric',
-		Lyric=Lyric
+		Lyric=Lyric,
+		songid=songid
 	)
 
 @music_page.route('/artistsrank')

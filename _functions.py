@@ -30,7 +30,7 @@ def getStatistics():
 	numberingArtists = sorted(listedArtists().values(), reverse=True)
 	forList = []; indexList = []
 	
-	for i in range(0, 5):
+	for i in range(0, 10):
 		forList.append(findKeys(listedArtists(), numberingArtists[i]))
 		indexList.append(numberingArtists[i])
 	
