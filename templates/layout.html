@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+    <script src="https://kit.fontawesome.com/d15d3797c1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <div class="flex flex-col min-h-screen">
+        <header class="header">
+            <a class="logo" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+                </svg>
+                <span style="font-weight: bold; margin-left: 10px;">Melonpy</span>
+            </a>
+            <nav class="nav">
+                <a class="nav-link" href="{{ url_for('musicPage.musicPage__Top100') }}">Top100</a>
+                <a class="nav-link" href="{{ url_for('musicPage.musicPage__ArtistsRank') }}">Artists</a>
+                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#">Contact</a>
+            </nav>
+        </header>
+
+        <main class="flex-1">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="footer" style="color: darkgrey;">
+            Copyright &copy; 2024 Melonpy. All rights reserved.<br>
+            Made by. HanLuca <br><br>
+    
+            <a href=""> <!-- Discord -->
+                <i class="fa-brands fa-discord" style="color: darkgray;"></i> 
+            </a>
+            <a href="https://www.instagram.com/tmdwns._.2023/"> <!-- Instagram -->
+                <i class="fa-brands fa-instagram" style="color: darkgray;"></i>
+            </a>
+    
+            <br><br>
+            <span style="font-size: 12px;">
+                이 서비스의 모든 저작권은 
+                <a href="https://www.melon.com/" style="color: #05e532;">멜론음원사이트</a> 와
+                 <a href="" style="color: #0097b2;">Melonpy</a> 에게 존재합니다.
+            </span>
+        </footer>
+    </div>
+</body>
+
+</html>

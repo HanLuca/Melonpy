@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <section class="hero-section">
+        <div class="container">
+            <div class="grid">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">This is Melonpy Header</h1>
+                        <p class="hero-subtitle">
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                            Melonpy Developing<br>
+                        </p>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('musicPage.musicPage__Top100') }}" class="btn-secondary">Get Started</a>
+                    </div>
+                </div>
+                <!-- <img src="/placeholder.svg" alt="Hero" class="hero-image" /> -->
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

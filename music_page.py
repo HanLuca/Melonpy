@@ -4,12 +4,29 @@ from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtist
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
 
+@music_page.route('/top100')
+def musicPage__Top100():
+	return render_template(
+		'music_page__top100.html',
+		title='Melonpy : Top100',
+		listedMelonChart=listedMelonChart(),
+		listNumbers=listNumbers
+	)
+
+@music_page.route('/statistics/<songid>')
+def musicPage__Statistics(songid):
+	return render_template(
+		'music_page__statistics.html',
+		title='Melonpy : Statistics'
+	)
+
 @music_page.route('/lyric/<songid>')
 def musicPage__Lyric(songid):
 	Lyric = getSongLyric(songid)
 	
 	return render_template(
 		'music_page__lyric.html',
+		title='Melonpy : Lyric',
 		Lyric=Lyric
 	)
 
@@ -17,6 +34,7 @@ def musicPage__Lyric(songid):
 def musicPage__ArtistsRank():
 	return render_template(
 		'music_page__artistsrank.html',
+		title='Melonpy : Artists Ranking',
 		Statistics=getStatistics(),
 		listNumbers=listNumbers,
 		iconList=[
@@ -30,5 +48,6 @@ def musicPage__ArtistsRank():
 def musicPage__Artists(name):
 	return render_template(
 		'music_page__artists.html',
+		title='Melonpy : Songs',
 		ArtistsSongs=getArtistSong(name)
 	)

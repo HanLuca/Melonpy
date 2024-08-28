@@ -1,89 +1,97 @@
-html,
 body {
-    margin: 0;
-    width: 100%;
-    overflow-x: hidden;
-    /* #00bf63 #0097b2 */	
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
     margin: 0;
     display: flex;
     flex-direction: column;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-
-a:active,
-a:hover {
-    text-decoration: none;
-}
-
-li {
-    list-style:none;
-}
-
-.textLogo {
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 30px;
+    min-height: 100vh;
 }
 
 .contentBox {
-    flex: 1;
-    /* background-color: white;  */
-    box-shadow: 0px 0px 8px #525151;
-    border-radius: 10px;
-    text-align: left;
     padding: 20px;
+    background-color: white;
+    /* border-radius: var(--radius); */
+    /* border: 2px solid var(--chart-1); */
+    /* box-shadow: 0 2px 10px white; */
+    width: 100%;
+    color: var(--primary-foreground);
 }
 
-header {
-    /* background: linear-gradient(to top, #fff, #00bf63); */
-    background-color: #0097b2;
-    text-align: center;
-    
-    padding: 20px;
+.features-sections {
+    padding: 48px 0;
+    background-color: white; /* 기본 배경색과 조화롭게 */
+    color: var(--primary-foreground);
+}
+
+.features-section .contentBox {
+    background-color: var(--card); /* 카드 배경색 */
+    color: var(--card-foreground); /* 카드 글자색 */
+}
+
+.features-section .contentBox a {
+    color: var(--foreground); /* 링크 기본 색상 */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.features-section .contentBox a:hover {
+    color: var(--chart-1); /* 링크 호버 색상 */
+}
+
+.features-section .contentBox li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.features-section .contentBox li span {
+    font-weight: bold;
+    font-size: 30px; /* 랭킹 번호 크기 */
+}
+
+.features-section .contentBox li div {
+    margin-left: 20px;
+}
+
+.features-section .contentBox li div a {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--foreground); /* 노래 제목 기본 색상 */
+}
+
+.features-section .contentBox li div span {
+    font-size: 15px;
+    color: var(--muted-foreground); /* 가수 이름 색상 */
+}
+
+.features-section .contentBox li div a:hover {
+    color: var(--chart-1); /* 노래 제목 호버 색상 */
+}
+
+.features-section .contentBox .material-symbols-outlined {
+    font-size: 40px;
+    vertical-align: middle;
+    color: var(--destructive); /* LIVE 아이콘 빨간색 */
+}
+
+.features-section .contentBox span[style*="font-size: 25px"] {
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--destructive); /* 빨간색 NOTICE */
+}
+
+.features-section .contentBox .more-horiz {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 40px;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
-/* menu */
-.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}
-
-.menu li {
-    display: inline;
-}
-
-.menu a {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
-/* */
-
-content {
-    background-color: #fff;
-    flex: 1;
-    padding: 20px;
-    text-align: center;
-}
-
-footer {
-    background-color: #3b3b3b;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    height: 150px;
+.features-section .contentBox .more-horiz:hover {
+    color: var(--chart-1); /* 더보기 버튼 호버 색상 */
 }

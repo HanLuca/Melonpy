@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='total.css') }}">
+
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="contentBox">
+        <span class="material-symbols-outlined" style="vertical-align: middle; color: red;">nest_remote_comfort_sensor</span>
+        <span style="vertical-align: middle; font-weight: bold; font-size: 25px; color: red;">
+            LIVE! <span style="color: black;">TOP100</span><br>
+        </span>
+
+        {% for song in listedMelonChart %}
+            <li style="display: flex; align-items: center; margin-top: 20px;">
+                <span style="font-weight: bold; font-size: 30px; color: black;">
+                    {{ listNumbers(song['ranking'] - 1) }}
+                </span>
+                <div style="margin-left: 20px">
+                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song['songId']) }}" style="vertical-align: middle; font-size: 20px; font-weight: 500; color: black;">
+                        {{ song['name'] }}
+                    </a><br>
+                    <span style="vertical-align: middle; font-size: 15px; color: gray; margin: 0;">
+                        {{ song['artists'] }}
+                    </span>
+                </div>
+                <div style="vertical-align: middle; color: black; text-align: right; margin-left: auto; margin-right: 40px;">
+                    <a href="{{ url_for('musicPage.musicPage__Statistics', songid=song['songId']) }}" class="material-symbols-outlined">arrow_forward</a>
+                </div>
+            </li>
+        {% endfor %}
+    </div>
+
+{% endblock %}
