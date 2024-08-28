@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <div class="flex flex-col min-h-screen">
+    <div>
         <header class="header">
-            <a class="logo" href="#">
+            <a class="logo" href="{{ url_for('mainPage.mainPage__Home') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                     <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
@@ -29,10 +29,10 @@
             </nav>
         </header>
 
-        <main class="flex-1">
+        <div>
             {% block content %}
             {% endblock %}
-        </main>
+        </div>
 
         <footer class="footer" style="color: darkgrey;">
             Copyright &copy; 2024 Melonpy. All rights reserved.<br>

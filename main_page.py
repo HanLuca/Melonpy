@@ -12,5 +12,5 @@ def mainPage__Emthy():
 def mainPage__Home():	
 	return render_template(
 		'main_page__home.html',
-		title='dd'
+		title='Melonpy'
 	)
