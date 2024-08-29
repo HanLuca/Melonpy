@@ -1,6 +1,6 @@
 from flask import Blueprint, url_for, render_template, redirect
 
-from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong
+from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
 
@@ -28,7 +28,9 @@ def musicPage__Lyric(songid):
 		'music_page__lyric.html',
 		title='Melonpy : Lyric',
 		Lyric=Lyric,
-		songid=songid
+		songid=songid,
+		SongName=getSongName(songid),
+		SongTitle=getSongName(songid, 'None')
 	)
 
 @music_page.route('/artistsrank')

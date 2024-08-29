@@ -51,5 +51,23 @@ def getSongLyric(SongID):
 	MelonSongLyric = scrapeMelon.getLyric(SongID).replace('\n', '<br>')
 	return MelonSongLyric
 
+def getSongName(SongID, Mode = "limit"):
+	SongNames = {}
+
+	for song in listedMelonChart():
+		SongName = list(song['name'])
+
+		if Mode == 'limit':
+			if len(SongName) > 8:
+				SongNames[song['songId']] = f'{"".join(SongName[:8])}...'
+		
+			else:
+				SongNames[song['songId']] = song['name']
+
+		else:
+			SongNames[song['songId']] = song['name']
+
+	return SongNames[SongID]
+
 def listNumbers(i: int):
 	return f"{i + 1:03}"

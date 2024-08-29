@@ -34,6 +34,8 @@
 {% block content %}   
     <div style="margin-left: 20px; text-align: center;">
         <br>
+        <span style="font-weight: bold; font-size: 25px;">{{ SongTitle }}</span>
+        <br><br>
         {{ Lyric | safe }}
         <br>
     </div>
@@ -43,7 +45,7 @@
         <a href="https://www.melon.com/song/detail.htm?songId={{ songid }}" class="material-symbols-outlined fixed-btn">play_arrow</a>
         <a href="{{ url_for('musicPage.musicPage__Statistics', songid=songid) }}" class="material-symbols-outlined fixed-btn">query_stats</a>
         <span style="margin-left: 10px; color: white;">┃</span>
-        <span class="fixed-btn" style="font-size: 13px;">노래제목ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ</span>
+        <span class="fixed-btn" style="margin-left: 10px; font-size: 13px;">{{ SongName }}</span>
     </div>
     
 {% endblock %}  
