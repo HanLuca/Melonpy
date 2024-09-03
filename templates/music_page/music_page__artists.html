@@ -3,6 +3,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    {{ ArtistsSongs }}
+    <div class="contentBox">
+        {% for song in ArtistsSongs %}
+            <li style="display: flex; align-items: center; margin-top: 20px; color: black;">
+                {{ song }}
+            </li>
+
+        {% endfor %}
+    </div>
     
 {% endblock %}

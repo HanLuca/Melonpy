@@ -22,6 +22,26 @@
     </section>
 
     <section class="features-section">
+        <div style="margin: 30px; display: flex; align-items: center;">
+            <img style="border-radius: 10px; border: 2px solid black;" src="https://i.ibb.co/qB8RMWJ/Melonpy-Top100-Chrome-2024-09-03-11-41-54.png">
+            <span style="width: 50%; margin: 0 0 0 20px; font-weight: bold; font-size: 20px;">
+                현재 <span style="color: #05e532;">멜론 TOP100</span>을 <span style="color: red;">실시간</span>으로 확인
+                <br><br><a href="{{ url_for('musicPage.musicPage__Top100') }}" class="btn-secondary" style="background-color: white;">시작하기</a>
+            </span>
+
+        </div>
+
+        <div style="margin: 30px; display: flex; align-items: center;">
+            <span style="width: 50%; margin: 0 20px 0 0; font-weight: bold; font-size: 20px;">
+                가장 인기있는 <span style="color: skyblue;">아티스트</span>를 확인 <br>
+                <span style="font-size: 15px; font-weight: 500;">
+                    바로 지금 <span style="color: #05e532;">멜론 TOP100</span>에 가장 많은 노래를 올린 아트스트를 확인!
+                    <br><br><a href="{{ url_for('musicPage.musicPage__ArtistsRank') }}" class="btn-secondary" style="background-color: white;">시작하기</a>
+                </span>
+            </span>
+            <img style="align-items: center; border-radius: 10px; border: 2px solid black;" src="https://i.ibb.co/nwJ4ZdG/Melonpy-Top100-Chrome-2024-09-03-11-42-20.png">
+
+        </div>
     </section>
 
 {% endblock %}

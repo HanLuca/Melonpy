@@ -5,6 +5,8 @@ from music_page import music_page
 
 app = Flask(__name__)
 
+app.config['SESSION_PERMANENT'] = True
+
 app.register_blueprint(main_page, url_prefix='/')
 app.register_blueprint(music_page, url_prefix='/')
 
