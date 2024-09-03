@@ -46,6 +46,14 @@ def getArtistSong(ArtistName):
 		Artists[song['name']] = song['artists']
 	
 	return findKeys(Artists, ArtistName)
+
+def getSongId():
+	SongIds = []
+
+	for song in listedMelonChart():
+		SongIds.append(song['songId'])
+
+	return SongIds
 	
 def getSongLyric(SongID):
 	MelonSongLyric = scrapeMelon.getLyric(SongID).replace('\n', '<br>')
