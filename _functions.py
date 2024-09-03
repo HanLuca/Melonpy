@@ -1,5 +1,5 @@
 from melonapi import scrapeMelon
-import json
+import json, datetime
 
 def findKeys(dict, val):
   return list(key for key, value in dict.items() if value == val)
@@ -79,3 +79,7 @@ def getSongName(SongID, Mode = "limit"):
 
 def listNumbers(i: int):
 	return f"{i + 1:03}"
+
+def getDayFlow(day):
+	day = day.split(".")
+	return datetime.date.today() - datetime.date(int(day[0]), int(day[1]), int(day[2]))

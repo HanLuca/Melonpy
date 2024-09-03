@@ -1,6 +1,6 @@
 from flask import Blueprint, url_for, render_template, redirect
 
-from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName, getSongId
+from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName, getSongId, getDayFlow
 from _addon import MelonAddon
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
@@ -16,12 +16,15 @@ def musicPage__Top100():
 
 @music_page.route('/statistics/<songid>')
 def musicPage__Statistics(songid):
+	songRelease = MelonAddon.getSongWhenRelease(songid)
+
 	return render_template(
 		'music_page__statistics.html',
 		title='Melonpy : Statistics',
 		songLikes=MelonAddon.getSongLikesList()[int(getSongId().index(songid))],
-		songRelease=MelonAddon.getSongWhenRelease(songid),
-		comments=MelonAddon.getCommentAmount(songid)
+		songRelease=songRelease,
+		comments=MelonAddon.getCommentAmount(songid),
+		dayFlow = getDayFlow(songRelease)
 	)
 
 @music_page.route('/lyric/<songid>')
