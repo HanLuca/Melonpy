@@ -82,4 +82,6 @@ def listNumbers(i: int):
 
 def getDayFlow(day):
 	day = day.split(".")
-	return datetime.date.today() - datetime.date(int(day[0]), int(day[1]), int(day[2]))
+	data = str(datetime.date.today() - datetime.date(int(day[0]), int(day[1]), int(day[2]))).split()[0]
+	return data
+	
