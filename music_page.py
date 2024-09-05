@@ -17,13 +17,14 @@ def musicPage__Top100():
 @music_page.route('/statistics/<songid>')
 def musicPage__Statistics(songid):
 	songRelease = MelonAddon.getSongWhenRelease(songid)
-	songLikesInt = MelonAddon.getSongLikesList()[int(getSongId().index(songid))].replace(",", "")
+	getedSongLikes = MelonAddon.getSongLikesList()[int(getSongId().index(songid))]
+	songLikesInt = getedSongLikes.replace(",", "")
 
 	return render_template(
 		'music_page__statistics.html',
 		title=f'Melonpy : Statistics  :: {getSongName(songid)}',
-		songName=getSongName(songid),
-		songLikes=MelonAddon.getSongLikesList()[int(getSongId().index(songid))],
+		songName=getSongName(songid, "none"),
+		songLikes=getedSongLikes,
 		songLikesInt = songLikesInt,
 		songRelease=songRelease,
 		comments=MelonAddon.getCommentAmount(songid),
