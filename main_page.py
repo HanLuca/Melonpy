@@ -20,5 +20,5 @@ def mainPage__Home():
 def mainPage__About():
 	return render_template(
 		'main_page__about.html',
-		title='Melonpt : About'
+		title='Melonpy : About'
 	)
