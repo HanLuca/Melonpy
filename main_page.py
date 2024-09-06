@@ -15,3 +15,10 @@ def mainPage__Home():
 		'main_page__home.html',
 		title='Melonpy'
 	)
+
+@main_page.route('/about')
+def mainPage__About():
+	return render_template(
+		'main_page__about.html',
+		title='Melonpt : About'
+	)

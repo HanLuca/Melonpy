@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='total.css') }}">
+
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div>
+        테마색<br>
+        <span style="color: var(--primary);">■</span> Background & base<br>
+        <span style="color: var(--chart-1)">■</span> Font
+    </div><br>
+    <div>
+        제작<br>
+        HanLuca ( https://github.com/HanLuca )
+    </div><br>
+    <div>
+        오픈소스<br>
+        https://github.com/HanLuca/Melonpy
+    </div>
+    <div>
+        사용언어 : python<br>
+        사용모듈 : <br>
+        melon-api (  ) <br>
+        seleninum <br>
+        request <br>
+        ... <br><br>
+
+        데이터 수집 및 출처 : melon.com
+    </div>
+
+{% endblock %}

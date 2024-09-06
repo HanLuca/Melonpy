@@ -1,47 +1,60 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='total.css') }}">
+<script src="{{ url_for('static', filename='Js/loading.js') }}"></script>
+
 {% extends 'layout.html' %}
 
 {% block content %}
-    <section class="hero-section">
-        <div class="container">
-            <div class="grid">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">Melonpy</h1>
-                        <p class="hero-subtitle">
-                            이 사이트는 현재 개발중에 있습니다<br>
-                            Melonpy 는 음원 프로그램인 '멜론' 을 이용하여 다양한 음원 및 아티스트를 분석합니다
-                        </p>
+    <div class="loaddingBlock"></div>
+
+    <div class="loading" style="display: none;">
+        <div class="loader"></div>
+        <span class="material-symbols-outlined" style="color: #f3f3f3; margin-bottom: 20px; color: light; z-index: 21; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">hourglass_top</span>
+        <span style="font-weight: bold; z-index: 21; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">정보를 불러오고 있습니다!</span>
+    </div>
+
+    <div>
+        <section class="hero-section">
+            <div class="container">
+                <div class="grid">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1 class="hero-title">Melonpy</h1>
+                            <p class="hero-subtitle">
+                                이 사이트는 현재 개발중에 있습니다<br>
+                                Melonpy 는 음원 프로그램인 '멜론' 을 이용하여 다양한 음원 및 아티스트를 분석합니다
+                            </p>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="{{ url_for('musicPage.musicPage__Top100') }}" class="btn-secondary">시작하기</a>
+                        </div>
                     </div>
-                    <div class="hero-buttons">
-                        <a href="{{ url_for('musicPage.musicPage__Top100') }}" class="btn-secondary">시작하기</a>
-                    </div>
-                </div>
-                <!-- <img src="/placeholder.svg" alt="Hero" class="hero-image" /> -->
-            </div>  
-        </div>
-    </section>
+                    <!-- <img src="/placeholder.svg" alt="Hero" class="hero-image" /> -->
+                </div>  
+            </div>
+        </section>
 
-    <section class="features-section">
-        <div style="margin: 30px; display: flex; align-items: center;">
-            <img style="border-radius: 10px; border: 2px solid black;" src="{{ url_for('static', filename='Img/mainPage_Img__Top100.png') }}">
-            <span style="width: 50%; margin: 0 0 0 20px; font-weight: bold; font-size: 20px;">
-                현재 <span style="color: #05e532;">멜론 TOP100</span>을 <span style="color: red;">실시간</span>으로 확인
-                <br><br><a href="{{ url_for('musicPage.musicPage__Top100') }}" class="btn-secondary" style="background-color: white;">시작하기</a>
-            </span>
-
-        </div>
-
-        <div style="margin: 30px; display: flex; align-items: center;">
-            <span style="width: 50%; margin: 0 20px 0 0; font-weight: bold; font-size: 20px;">
-                가장 인기있는 <span style="color: skyblue;">아티스트</span>를 확인 <br>
-                <span style="font-size: 15px; font-weight: 500;">
-                    바로 지금 <span style="color: #05e532;">멜론 TOP100</span>에 가장 많은 노래를 올린 아트스트를 확인!
-                    <br><br><a href="{{ url_for('musicPage.musicPage__ArtistsRank') }}" class="btn-secondary" style="background-color: white;">시작하기</a>
+        <section class="features-section">
+            <div style="margin: 30px; display: flex; align-items: center;">
+                <img style="border-radius: 10px; border: 2px solid black;" src="{{ url_for('static', filename='Img/mainPage_Img__Top100.png') }}">
+                <span style="width: 50%; margin: 0 0 0 20px; font-weight: bold; font-size: 20px;">
+                    현재 <span style="color: #05e532;">멜론 TOP100</span>을 <span style="color: red;">실시간</span>으로 확인
+                    <br><br><a href="{{ url_for('musicPage.musicPage__Top100') }}" class="btn-secondary" style="background-color: white;">시작하기</a>
                 </span>
-            </span>
-            <img style="align-items: center; border-radius: 10px; border: 2px solid black;" src="{{ url_for('static', filename='Img/mainPage_Img__Artists.png') }}">
 
-        </div>
-    </section>
+            </div>
+
+            <div style="margin: 30px; display: flex; align-items: center;">
+                <span style="width: 50%; margin: 0 20px 0 0; font-weight: bold; font-size: 20px;">
+                    가장 인기있는 <span style="color: skyblue;">아티스트</span>를 확인 <br>
+                    <span style="font-size: 15px; font-weight: 500;">
+                        바로 지금 <span style="color: #05e532;">멜론 TOP100</span>에 가장 많은 노래를 올린 아트스트를 확인!
+                        <br><br><a href="{{ url_for('musicPage.musicPage__ArtistsRank') }}" class="btn-secondary" style="background-color: white;" onclick="loadPage()">시작하기</a>
+                    </span>
+                </span>
+                <img style="align-items: center; border-radius: 10px; border: 2px solid black;" src="{{ url_for('static', filename='Img/mainPage_Img__Artists.png') }}">
+
+            </div>
+        </section>
+    </div>
 
 {% endblock %}
