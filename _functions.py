@@ -26,17 +26,23 @@ def listedArtists():
 
 def getStatistics():
 	Statistics = {}
+	beforeIndex = 0
 	
 	numberingArtists = sorted(listedArtists().values(), reverse=True)
 	forList = []; indexList = []
 	
 	for i in range(0, 10):
-		forList.append(findKeys(listedArtists(), numberingArtists[i]))
-		indexList.append(numberingArtists[i])
+		if beforeIndex != numberingArtists[i]:
+			beforeIndex = numberingArtists[i]
+			forList.append(findKeys(listedArtists(), numberingArtists[i]))
+			indexList.append(numberingArtists[i])
+
+		else: pass
 	
 	Statistics['mode'] = forList
 	Statistics['modeIndex'] = indexList
 	
+	print(Statistics)
 	return Statistics
 
 def getArtistSong(ArtistName):
