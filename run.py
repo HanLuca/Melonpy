@@ -10,4 +10,4 @@ app.config['SESSION_PERMANENT'] = True
 app.register_blueprint(main_page, url_prefix='/')
 app.register_blueprint(music_page, url_prefix='/')
 
-app.run(host= '0.0.0.0', port= 9999, debug= True)
+app.run(host= '0.0.0.0', port= 9999)
