@@ -1,11 +1,23 @@
 from flask import Flask
+from flask_session import Session
+import random
 
 from main_page import main_page
 from music_page import music_page
 
+from config import token
+
 app = Flask(__name__)
 
-app.config['SESSION_PERMANENT'] = True
+
+
+app.config['SESSION_PERMANENT'] = False
+app.config["SESSION_TYPE"] = "filesystem"
+
+Session(app)
+
+app.secret_key = token
+
 
 app.register_blueprint(main_page, url_prefix='/')
 app.register_blueprint(music_page, url_prefix='/')

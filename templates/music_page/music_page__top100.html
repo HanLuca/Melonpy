@@ -19,22 +19,26 @@
         </span>
 
         {% for song in listedMelonChart %}
-            <li style="display: flex; align-items: center; margin-top: 20px;">
-                <span style="font-weight: bold; font-size: 30px; color: black;">
-                    {{ listNumbers(song['ranking'] - 1) }}
-                </span>
-                <div style="margin-left: 20px">
-                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song['songId']) }}" style="vertical-align: middle; font-size: 20px; font-weight: 500; color: black;">
-                        {{ song['name'] }}
-                    </a><br>
-                    <span style="vertical-align: middle; font-size: 15px; color: gray; margin: 0;">
-                        {{ song['artists'] }}
+            {% if song[0] != 0 %}
+                <!-- [Ranking, SongName, Artists, SongId, AlbumId, Likes] -->
+        
+                <li style="display: flex; align-items: center; margin-top: 20px;">
+                    <span style="font-weight: bold; font-size: 30px; color: black;">
+                        {{ listNumbers(song[0] - 1) }}
                     </span>
-                </div>
-                <div style="vertical-align: middle; color: black; text-align: right; margin-left: auto; margin-right: 40px;">
-                    <a href="{{ url_for('musicPage.musicPage__Statistics', songid=song['songId']) }}" class="material-symbols-outlined" onclick='loadPage()'>arrow_forward</a>
-                </div>
-            </li>
+                    <div style="margin-left: 20px">
+                        <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="vertical-align: middle; font-size: 20px; font-weight: 500; color: black;">
+                            {{ song[1] }}
+                        </a><br>
+                        <span style="vertical-align: middle; font-size: 15px; color: gray; margin: 0;">
+                            {{ song[2] }}
+                        </span>
+                    </div>
+                    <div style="vertical-align: middle; color: black; text-align: right; margin-left: auto; margin-right: 40px;">
+                        <a href="{{ url_for('musicPage.musicPage__Statistics', songid=song[3]) }}" class="material-symbols-outlined" onclick='loadPage()'>arrow_forward</a>
+                    </div>
+                </li>
+            {% endif %}
         {% endfor %}
     </div>
 

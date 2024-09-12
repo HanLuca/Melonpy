@@ -34,8 +34,7 @@
                 <span style="vertical-align: middle;">Likes Statistic</span>
             </span><br>
 
-            <span style="font-weight: 500;">{{ songLikes }}</span><br><br>
-            이 곡은 하루에 <span style="color: green;">약 {{ (songLikesInt|int) // (dayFlow|int) }} 개</span>의 좋아요가 증가했습니다
+            <span style="font-weight: 500;">{{ songLikes }}</span>
         </div>
 
         <div class="statisticsBox" style="margin-right: 20px; margin-top: 20px;">
@@ -45,7 +44,6 @@
             </span><br><br>
 
             {{ songName }}<br>
-            {{ songRelease }}
         </div>
     </div>
 
