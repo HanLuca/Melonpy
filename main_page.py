@@ -3,6 +3,7 @@ import json
 
 #from _functions import listedMelonChart, listNumbers, getSongName
 from _process import loadMelonChart
+from _functions import checkMelonChartSession
 
 main_page = Blueprint('mainPage', __name__, template_folder='templates/main_page')
 
@@ -12,9 +13,7 @@ def mainPage__Emthy():
 
 @main_page.route('/home')
 def mainPage__Home():
-	if 'melonChart' in session: pass
-	else:
-		session['melonChart'] = loadMelonChart()
+	checkMelonChartSession()
 	
 	return render_template(
 		'main_page__home.html',

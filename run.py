@@ -11,7 +11,7 @@ from config import token
 app = Flask(__name__)
 
 app.config['SESSION_PERMANENT'] = True
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=3)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=120)
 app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)

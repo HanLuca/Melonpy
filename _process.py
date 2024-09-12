@@ -17,6 +17,7 @@ driver = webdriver.Chrome(options=options)
 
 def loadMelonChart():
 	driver.get("https://www.melon.com/chart/index.htm")
+	time.sleep(1)
 	soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 	MelonChart = json.loads(scrapeMelon.getList('LIVE').decode())
@@ -30,5 +31,4 @@ def loadMelonChart():
 			[songLikes]
 		)
 
-	print(MelonChartList)
 	return MelonChartList
