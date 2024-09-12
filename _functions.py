@@ -2,7 +2,8 @@
 
 from melonapi import scrapeMelon
 from flask import Flask, request, render_template, redirect, session, url_for
-import json, datetime
+import json, datetime, requests
+from bs4 import BeautifulSoup
 from functools import wraps
 from _process import loadMelonChart
 
@@ -38,6 +39,11 @@ class GetFromMelon():
 
 	def getSongLyric(self):
 		return scrapeMelon.getLyric(self.songId).replace('\n', '<br>')
+
+	def getSongRelease(self):
+		html = requests.get(f"https://www.melon.com/song/detail.htm?songId={self.songId}", headers={"User-Agent": "github.com/hanluca/Melonpy"}).text
+        
+		return BeautifulSoup(html, "lxml").find_all("dd", limit=2)[1].getText()
 		
 	# 가사, 아티스트 랭크
 

@@ -30,6 +30,7 @@ def musicPage__Statistics(songid):
 		songName = GetFromMelon(songid, melonChart).getSongNamed(),
 		songLikes = GetFromMelon(songid, melonChart).getSongLikes(),
 		songLikesInt = GetFromMelon(songid, melonChart).getIntegerSongLikes(),
+		songRelease = GetFromMelon(songid, melonChart).getSongRelease()
 	)
 
 @music_page.route('/lyric/<songid>')

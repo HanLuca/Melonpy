@@ -30,4 +30,5 @@ def loadMelonChart():
 			[songLikes]
 		)
 
+	print(MelonChartList)
 	return MelonChartList
