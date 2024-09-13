@@ -2,7 +2,7 @@ from flask import Blueprint, url_for, render_template, redirect, session
 import json
 
 #from _functions import listedMelonChart, listNumbers, getSongName
-from _process import loadMelonChart
+from _process import loadArtistsChart
 from _functions import checkMelonChartSession
 
 main_page = Blueprint('mainPage', __name__, template_folder='templates/main_page')
@@ -24,5 +24,18 @@ def mainPage__Home():
 def mainPage__About():
 	return render_template(
 		'main_page__about.html',
-		title='Melonpy : About'
+		title='Melonpy : About',
+		backMode="musicPage.musicPage__Top100",
+	)
+
+@main_page.route('/setting/<setting>')
+def mainPage__Setting(setting):
+	if setting == 'sessionReset':
+		session.clear()
+		return redirect(url_for('mainPage.mainPage__Home'))
+	
+	return render_template(
+		'main_page__setting.html',
+		title='Melonpy : Setting',
+		backMode="mainPage.mainPage__Home",
 	)

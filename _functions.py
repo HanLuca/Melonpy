@@ -5,17 +5,21 @@ from flask import Flask, request, render_template, redirect, session, url_for
 import json, datetime, requests
 from bs4 import BeautifulSoup
 from functools import wraps
-from _process import loadMelonChart
+from _process import loadMelonChart, loadArtistsChart
 
 def checkMelonChartSession():
-	if "melonChart" not in session: 
+	if "melonChart" not in session or "artistsChart" not in session:
 		session['melonChart'] = loadMelonChart()
+		session['artistsChart'] = loadArtistsChart(session['melonChart'])
 
 def getSongId(songName, melonChart):
 	return [sublist for sublist in melonChart if songName in sublist][0][3]
 
 def listNumbers(i: int):
 	return f"{i + 1:03}"
+	
+def getSongArtistsSongs(melonChart, artistsName):
+	return [sublist for sublist in melonChart if artistsName in sublist]
 
 class GetFromMelon():
 	def __init__(self, songId, melonChart):
@@ -77,27 +81,6 @@ class GetFromMelon():
 # 		else: listedArtists[artists] = 1
 
 # 	return listedArtists
-
-# def getStatistics():
-# 	Statistics = {}
-# 	beforeIndex = 0
-	
-# 	numberingArtists = sorted(listedArtists().values(), reverse=True)
-# 	forList = []; indexList = []
-	
-# 	for i in range(0, 10):
-# 		if beforeIndex != numberingArtists[i]:
-# 			beforeIndex = numberingArtists[i]
-# 			forList.append(findKeys(listedArtists(), numberingArtists[i]))
-# 			indexList.append(numberingArtists[i])
-
-# 		else: pass
-	
-# 	Statistics['mode'] = forList
-# 	Statistics['modeIndex'] = indexList
-	
-# 	print(Statistics)
-# 	return Statistics
 
 # def getArtistSong(ArtistName):
 # 	Artists = {}

@@ -30,23 +30,32 @@
         <span style="vertical-align: middle; font-weight: bold; font-size: 25px; color: red;">
             LIVE! <span style="color: black;">ARTISTS RANK</span><br>
         </span>
-        
-        {% for i in range(0, 10) %}
-            {% for k in range(0, Statistics['mode'][i] | length) %}
-                <li style="display: flex; align-items: center; margin-top: 20px;">
+                
+        {% for i in range(Statistics['artistsChartName'] | length) %}
+            <li style="display: flex; align-items: center; margin-top: 20px;">
+                {% if i == 0 %}
                     <span class="listNumberFont" style="color: black;">{{ listNumbers(i) }}</span>
-                    <div style="margin-left: 20px;">
-                        <a href="{{ url_for('musicPage.musicPage__Artists', name=Statistics['mode'][i][k]) }}" class="contentFont">
-                            {{ Statistics['mode'][i][k] }}
-                        </a><br>
-                        <span class="subFont">
-                            <span style="vertical-align: middle;">{{ iconList[i] | safe }}</span> 
-                            {{ Statistics['modeIndex'][i] }}곡의 노래 
-                        </span>
-                    </div>
-                </li>
-
-            {% endfor %}
+                
+                {% else %}
+                    {% if Statistics['artistsChartCount'][i - 1] != Statistics['artistsChartCount'][i] %}
+                        <span class="listNumberFont" style="color: black;">{{ listNumbers(i) }}</span>
+                
+                    {% else %}
+                        <span class="listNumberFont" style="color: black;">┗→</span>
+                
+                    {% endif %}
+                {% endif %}
+                
+                <div style="margin-left: 20px;">
+                    <a href="{{ url_for('musicPage.musicPage__Artists', name=Statistics['artistsChartName'][i]) }}" class="contentFont">
+                        {{ Statistics['artistsChartName'][i] }}
+                    </a><br>
+                    <span class="subFont">
+                        <span style="vertical-align: middle;">{{ iconList[i] | safe }}</span> 
+                        {{ Statistics['artistsChartCount'][i] }}곡의 노래 
+                    </span>
+                </div>
+            </li>
         {% endfor %}
     </div>
     

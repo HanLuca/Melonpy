@@ -4,11 +4,24 @@
 
 {% block content %}
     <div class="contentBox">
-        {% for song in ArtistsSongs %}
+        {% for song in ArtistsSongs %}          
             <li style="display: flex; align-items: center; margin-top: 20px; color: black;">
-                {{ song }}
+                <span style="font-weight: bold; font-size: 30px; color: black;">
+                    {{ listNumbers(song[0] - 1) }}
+                </span>
+                <div style="margin-left: 20px">
+                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="vertical-align: middle; font-size: 20px; font-weight: 500; color: black;">
+                        {{ song[1] }}
+                    </a><br>
+                    <span style="vertical-align: middle; font-size: 15px; color: gray; margin: 0;">
+                        {{ song[2] }}
+                    </span>
+                </div>
+                <div style="vertical-align: middle; color: black; text-align: right; margin-left: auto; margin-right: 40px;">
+                    <a href="{{ url_for('musicPage.musicPage__Statistics', songid=song[3]) }}" class="material-symbols-outlined" onclick='loadPage()'>arrow_forward</a>
+                </div>
             </li>
-
+        
         {% endfor %}
     </div>
     

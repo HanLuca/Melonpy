@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='total.css') }}">
+
+{% extends 'layout.html' %}
+
+{% block content %}
+    <a href="{{ url_for('mainPage.mainPage__Setting', setting='sessionReset') }}">Reset Session</a>
+
+{% endblock %}

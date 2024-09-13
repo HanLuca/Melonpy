@@ -2,6 +2,7 @@ from melonapi import scrapeMelon
 import json, time, requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from collections import Counter
 
 start = time.time()
 
@@ -17,7 +18,7 @@ driver = webdriver.Chrome(options=options)
 
 def loadMelonChart():
 	driver.get("https://www.melon.com/chart/index.htm")
-	time.sleep(1)
+	time.sleep(2)
 	soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 	MelonChart = json.loads(scrapeMelon.getList('LIVE').decode())
@@ -32,3 +33,12 @@ def loadMelonChart():
 		)
 
 	return MelonChartList
+
+def loadArtistsChart(melonChart):
+	artistsChart = {}
+	artists = [melonChart[i][2] for i in range(1, len(melonChart))]
+
+	artistsChart['artistsChartName'] = [artist for artist, count in Counter(artists).most_common()]
+	artistsChart['artistsChartCount'] = [count for artist, count in Counter(artists).most_common()]
+	
+	return artistsChart

@@ -26,20 +26,27 @@
 
     <div>
         <header class="header">
-            <a class="logo" href="{{ url_for('mainPage.mainPage__Home') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-activity">
-                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                </svg>
-                <span style="font-weight: bold; margin-left: 10px;">Melonpy</span>
-            </a>
+            {% if backMode %}
+                <a class="logo" href="{{ url_for(backMode) }}">
+                    <span class="material-symbols-outlined">arrow_back_ios</span>
+                </a>
+            
+            {% else %}
+                <a class="logo" href="{{ url_for('mainPage.mainPage__Home') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-activity">
+                        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                        <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                    </svg>
+                    <span style="font-weight: bold; margin-left: 10px;">Melonpy</span>
+                </a>
+            {% endif %}
             <nav class="nav">
                 <a class="nav-link" href="{{ url_for('musicPage.musicPage__Top100') }}">Top100</a>
                 <a class="nav-link" href="{{ url_for('musicPage.musicPage__ArtistsRank') }}" onclick="loadPage()">Artists</a>
                 <a class="nav-link" href="{{ url_for('mainPage.mainPage__About') }}">About</a>
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="{{ url_for('mainPage.mainPage__Setting', setting='None') }}">Setting</a>
             </nav>
         </header>
 
