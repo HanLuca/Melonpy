@@ -1,8 +1,7 @@
 from flask import Blueprint, session, url_for, render_template, redirect
 
 #from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName, getSongId, getDayFlow, checkMelonChartSession
-from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, GetFromMelon
-from _addon import MelonAddon
+from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, GetFromMelonF
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
 
