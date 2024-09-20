@@ -1,10 +1,9 @@
 from melonapi import scrapeMelon
-import json, time, requests
+import json, time, requests, datetime
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from collections import Counter
-
-start = time.time()
+from flask import request
 
 chartKeys = ['ranking', 'name', 'artists', 'songId', 'albumId']
 
@@ -42,3 +41,7 @@ def loadArtistsChart(melonChart):
 	artistsChart['artistsChartCount'] = [count for artist, count in Counter(artists).most_common()]
 	
 	return artistsChart
+
+def loggingData(string):
+	with open('log.txt', 'a') as log:
+		log.write(f"[{datetime.date.today()}] [{request.remote_addr}] :: {string}\n")

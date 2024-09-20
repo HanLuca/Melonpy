@@ -3,3 +3,4 @@ memo.py
 config.py
 flask_session/
 .trash/
+log.txt

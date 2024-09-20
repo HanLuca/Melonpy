@@ -5,11 +5,12 @@ from flask import Flask, request, render_template, redirect, session, url_for
 import json, datetime, requests
 from bs4 import BeautifulSoup
 from functools import wraps
-from _process import loadMelonChart, loadArtistsChart
+from _process import loadMelonChart, loadArtistsChart, loggingData
 
 def checkMelonChartSession():
 	if "melonChart" not in session or "artistsChart" not in session:
-		print("선언됨")
+		loggingData('Loading Session')
+		
 		session['melonChart'] = loadMelonChart()
 		session['artistsChart'] = loadArtistsChart(session['melonChart'])
 
