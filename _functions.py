@@ -9,6 +9,7 @@ from _process import loadMelonChart, loadArtistsChart
 
 def checkMelonChartSession():
 	if "melonChart" not in session or "artistsChart" not in session:
+		print("선언됨")
 		session['melonChart'] = loadMelonChart()
 		session['artistsChart'] = loadArtistsChart(session['melonChart'])
 

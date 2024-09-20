@@ -1,7 +1,7 @@
 from flask import Blueprint, session, url_for, render_template, redirect
 
 #from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName, getSongId, getDayFlow, checkMelonChartSession
-from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, GetFromMelonF
+from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, GetFromMelon
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
 
@@ -51,6 +51,8 @@ def musicPage__Lyric(songid):
 
 @music_page.route('/artistsrank')
 def musicPage__ArtistsRank():
+	checkMelonChartSession()
+	
 	return render_template(
 		'music_page__artistsrank.html',
 		title='Melonpy : Artists Ranking',

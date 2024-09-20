@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    <!-- <div class="loading loader" style="display: none;"></div> -->
     <div class="loaddingBlock"></div>
 
     <div class="loading" style="display: none;">
@@ -42,12 +41,18 @@
                     <span style="font-weight: bold; margin-left: 10px;">Melonpy</span>
                 </a>
             {% endif %}
-            <nav class="nav">
-                <a class="nav-link" href="{{ url_for('musicPage.musicPage__Top100') }}">Top100</a>
-                <a class="nav-link" href="{{ url_for('musicPage.musicPage__ArtistsRank') }}" onclick="loadPage()">Artists</a>
-                <a class="nav-link" href="{{ url_for('mainPage.mainPage__About') }}">About</a>
-                <a class="nav-link" href="{{ url_for('mainPage.mainPage__Setting', setting='None') }}">Setting</a>
-            </nav>
+            {% if mainPage == True %}
+                    
+
+            {% else %}
+                <nav class="nav">
+                    <a class="nav-link" href="{{ url_for('musicPage.musicPage__Top100') }}" onclick='loadPage()'>Top100</a>
+                    <a class="nav-link" href="{{ url_for('musicPage.musicPage__ArtistsRank') }}" onclick="loadPage()">Artists</a>
+                    <a class="nav-link" href="{{ url_for('mainPage.mainPage__About') }}">About</a>
+                    <a class="nav-link" href="{{ url_for('mainPage.mainPage__Setting', setting='None') }}">Setting</a>
+                </nav>
+
+            {% endif %}
         </header>
 
         <div>
