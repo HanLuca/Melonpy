@@ -50,7 +50,7 @@
     <br>
 
     <div class="fixed-box">
-        <a href="https://www.melon.com/song/detail.htm?songId={{ songid }}" class="material-symbols-outlined fixed-btn">play_arrow</a>
+        <a href="https://www.melon.com/song/detail.htm?songId={{ songid }}" target="_blank" class="material-symbols-outlined fixed-btn">play_arrow</a>
         <a href="{{ url_for('musicPage.musicPage__Statistics', songid=songid) }}" class="material-symbols-outlined fixed-btn" onclick="loadPage()">query_stats</a>
         <span style="margin-left: 10px; color: white;">┃</span>
         <span class="fixed-btn" style="margin-left: 10px; font-size: 13px;">{{ SongName }}</span>

@@ -20,12 +20,18 @@ def getSongId(songName, melonChart):
 def listNumbers(i: int):
 	return f"{i + 1:03}"
 	
-def getSongArtistsSongs(melonChart, artistsName):
+def getSongWithArtistsName(melonChart, artistsName):
 	return [sublist for sublist in melonChart if artistsName in sublist]
+
+def getSongFullWithSongId(melonChart, songid):
+	return [sublist for sublist in melonChart if songid in sublist][0]
 
 def getDayFlow(day):
 	return str(datetime.date.today() - datetime.date(int(day.split(".")[0]), int(day.split(".")[1]), int(day.split(".")[2]))).split()[0]
-	
+
+def getLimitString(string):
+	if len(string) >= 18: return f"{"".join(string[:18])}..."
+	else: return string
 
 class GetFromMelon():
 	def __init__(self, songId, melonChart):

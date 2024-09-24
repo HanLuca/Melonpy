@@ -1,10 +1,9 @@
 from flask import Blueprint, session, url_for, render_template, redirect
 
 #from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName, getSongId, getDayFlow, checkMelonChartSession
-from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, getDayFlow, GetFromMelon 
+from _functions import checkMelonChartSession, listNumbers, getSongWithArtistsName, getDayFlow, getSongFullWithSongId, getLimitString, GetFromMelon 
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
-
 
 @music_page.route('/top100')
 def musicPage__Top100():
@@ -20,7 +19,7 @@ def musicPage__Top100():
 @music_page.route('/statistics/<songid>')
 def musicPage__Statistics(songid):
 	checkMelonChartSession()
-
+	
 	melonChart = session['melonChart']
 
 	return render_template(
@@ -29,7 +28,8 @@ def musicPage__Statistics(songid):
 		backMode="musicPage.musicPage__Top100",
 		session = session["melonChart"],
 		getDayFlow = getDayFlow,
-		getArtistsSongs = getSongArtistsSongs,
+		getLimitString = getLimitString,
+		getArtistsSongs = getSongWithArtistsName,
 		songName = GetFromMelon(songid, melonChart).getSongNamed(),
 		songArtists = GetFromMelon(songid, melonChart).getSongArtists(),
 		songLikes = GetFromMelon(songid, melonChart).getSongLikes(),
@@ -76,7 +76,7 @@ def musicPage__Artists(name):
 	return render_template(
 		'music_page__artists.html',
 		title='Melonpy : Songs',
-		ArtistsSongs=getSongArtistsSongs(session['melonChart'], name),
+		ArtistsSongs=getSongWithArtistsName(session['melonChart'], name),
 		listNumbers=listNumbers,
 		backMode="musicPage.musicPage__ArtistsRank"
 	)

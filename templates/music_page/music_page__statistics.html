@@ -9,10 +9,10 @@
         <span style="font-size: 15px; font-weight: 500; color: lightgray;">{{ songRelease }}</span>
     </div>
 
-    <div style="display: inline-block;">
+    <div style="display: inline-block; margin: 25px; padding: 20px; border: 2px solid var(--primary); border-radius: 10px;">
         <span style="font-size: 20px; font-weight: bold; color: black;">
             <span style="vertical-align: middle;" class="material-symbols-outlined">favorite</span> 
-            <span style="vertical-align: middle;">Likes Statistic</span>
+            <span style="vertical-align: middle;">좋아요 통계</span>
         </span><br>
         <span style="font-weight: 500;">{{ songLikes }}</span>
 
@@ -21,25 +21,29 @@
         </div>
     </div>
 
-    <div style="float: right; margin: 25px; padding: 20px; background: var(--primary); border-radius: 10px;">
-        <span style="font-size: 20px; font-weight: bold; color: white;">이 아티스트의 다른 곡</span><br><br>
+    <div style="float: right; margin: 25px; padding: 20px; border: 2px solid var(--primary); border-radius: 10px;">
+        <span style="font-size: 20px; font-weight: bold; color: black;">이 아티스트의 다른 곡</span><br><br>
         {% for song in getArtistsSongs(session, songArtists) %}
             {% if getArtistsSongs(session, songArtists) | length <= 1 %}
                 <span class="material-symbols-outlined" style="vertical-align: middle; color: lightgray;">arrow_right</span>
-                <span style="vertical-align: middle; color: lightgray;">존재하지 않습니다.</span>
+                <span style="vertical-align: middle; color: dimgray;">존재하지 않습니다.</span>
                 
             {% else %}
                 {% if song[1] == songName %} <!-- Skip -->
                 {% else %}
-                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="color: lightgray; font-weight: 500;">
+                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="color: dimgray; font-weight: 500;">
                         <span class="material-symbols-outlined" style="vertical-align: middle;">arrow_right</span>
-                        <span style="vertical-align: middle;">{{ song[1] }}</span>
+                        <span style="vertical-align: middle;">{{ getLimitString(song[1]) }}</span>
                     </a><br>
 
                 {% endif %}
 
             {% endif %}
         {% endfor %}
+    </div>
+
+    <div>
+        
     </div>
     
 {% endblock %}
