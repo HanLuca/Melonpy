@@ -1,7 +1,7 @@
 from flask import Blueprint, session, url_for, render_template, redirect
 
 #from _functions import listedMelonChart, listNumbers, getSongLyric, listedArtists, getStatistics, getArtistSong, getSongName, getSongId, getDayFlow, checkMelonChartSession
-from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, GetFromMelon
+from _functions import checkMelonChartSession, listNumbers, getSongArtistsSongs, getDayFlow, GetFromMelon 
 
 music_page = Blueprint('musicPage', __name__, template_folder='templates/music_page')
 
@@ -27,10 +27,15 @@ def musicPage__Statistics(songid):
 		'music_page__statistics.html',
 		title=f'Melonpy : Statistics  :: {GetFromMelon(songid, melonChart).getSongNamed()}',
 		backMode="musicPage.musicPage__Top100",
+		session = session["melonChart"],
+		getDayFlow = getDayFlow,
+		getArtistsSongs = getSongArtistsSongs,
 		songName = GetFromMelon(songid, melonChart).getSongNamed(),
+		songArtists = GetFromMelon(songid, melonChart).getSongArtists(),
 		songLikes = GetFromMelon(songid, melonChart).getSongLikes(),
 		songLikesInt = GetFromMelon(songid, melonChart).getIntegerSongLikes(),
-		songRelease = GetFromMelon(songid, melonChart).getSongRelease()
+		songRelease = GetFromMelon(songid, melonChart).getSongRelease(),
+		songCoverImg = GetFromMelon(songid, melonChart).getSongAlbumImg()
 	)
 
 @music_page.route('/lyric/<songid>')

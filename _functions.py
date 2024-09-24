@@ -55,6 +55,7 @@ class GetFromMelon():
         
 		return BeautifulSoup(html, "lxml").find_all("dd", limit=2)[1].getText()
 
-# def getDayFlow(day):
-
-	
+	def getSongAlbumImg(self):
+		html = requests.get(f"https://www.melon.com/song/detail.htm?songId={self.songId}", headers={"User-Agent": "github.com/hanluca/Melonpy"}).text
+        
+		return BeautifulSoup(html, "lxml").find("img", {"onerror" : "WEBPOCIMG.defaultAlbumImg(this);"}).get("src")

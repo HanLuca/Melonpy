@@ -1,56 +1,45 @@
-<!--
-아티스트 위주의 분석?
-작곡가, 엘범, 출시일 등 
-
--->
-<style>
-    .statisticsWarp {
-        display: flex;
-        justify-content: center;
-    }
-
-    .statisticsBox {
-        background-color: white;
-        border: 2px solid var(--primary);
-        border-radius: 10px;
-        color: black;
-        padding: 10px;
-        margin: 5px;
-        width: 50%;
-    }
-
-</style>
-
 <link rel="stylesheet" href="{{ url_for('static', filename='total.css') }}">
 
 {% extends 'layout.html' %}
 
 {% block content %}
-    {{ songName }}
-    <div class="statisticsWarp">
-        <div class="statisticsBox" style="margin-left: 20px; margin-top: 20px;">
-            <span style="font-size: 20px; font-weight: bold; color: black;">
-                <span style="vertical-align: middle;" class="material-symbols-outlined">favorite</span> 
-                <span style="vertical-align: middle;">Likes Statistic</span>
-            </span><br>
+    <div style="align-items: center; text-align: center; padding: 25px; background-color: var(--primary);">
+        <img src="{{ songCoverImg }}" width="200px" height="200px" style="border-radius: 10px; border: 3px solid white;"><br><br>
+        <span style="font-size: 25px; font-weight: bold; color: white;">{{ songName }}</span><br>
+        <span style="font-size: 15px; font-weight: 500; color: lightgray;">{{ songRelease }}</span>
+    </div>
 
-            <span style="font-weight: 500;">{{ songLikes }}</span>
-        </div>
+    <div style="display: inline-block;">
+        <span style="font-size: 20px; font-weight: bold; color: black;">
+            <span style="vertical-align: middle;" class="material-symbols-outlined">favorite</span> 
+            <span style="vertical-align: middle;">Likes Statistic</span>
+        </span><br>
+        <span style="font-weight: 500;">{{ songLikes }}</span>
 
-        <div class="statisticsBox" style="margin-right: 20px; margin-top: 20px;">
-            <span style="font-size: 20px; font-weight: bold; color: black;">
-                <span style="vertical-align: middle;" class="material-symbols-outlined">info</span> 
-                <span style="vertical-align: middle;">Song Information</span>
-            </span><br><br>
-
-            {{ songName }}<br>
-            {{ songRelease }}
+        <div style="font-weight: 500;">
+            하루 <span style="color: green;">약 {{ songLikesInt | int // getDayFlow(songRelease) | int }}개</span>의 좋아요가 증가했습니다.
         </div>
     </div>
 
-    <div class="statisticsWarp">
-        <div class="statisticsBox" style="margin-left: 20px;">d</div>
-        <div class="statisticsBox" style="margin-right: 20px;">d</div>
+    <div style="float: right; margin: 25px; padding: 20px; background: var(--primary); border-radius: 10px;">
+        <span style="font-size: 20px; font-weight: bold; color: white;">이 아티스트의 다른 곡</span><br><br>
+        {% for song in getArtistsSongs(session, songArtists) %}
+            {% if getArtistsSongs(session, songArtists) | length <= 1 %}
+                <span class="material-symbols-outlined" style="vertical-align: middle; color: lightgray;">arrow_right</span>
+                <span style="vertical-align: middle; color: lightgray;">존재하지 않습니다.</span>
+                
+            {% else %}
+                {% if song[1] == songName %} <!-- Skip -->
+                {% else %}
+                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="color: lightgray; font-weight: 500;">
+                        <span class="material-symbols-outlined" style="vertical-align: middle;">arrow_right</span>
+                        <span style="vertical-align: middle;">{{ song[1] }}</span>
+                    </a><br>
+
+                {% endif %}
+
+            {% endif %}
+        {% endfor %}
     </div>
     
 {% endblock %}
