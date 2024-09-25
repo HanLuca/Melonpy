@@ -25,6 +25,7 @@ def mainPage__About():
 		'main_page__about.html',
 		title='Melonpy : About',
 		backMode="musicPage.musicPage__Top100",
+		usedModulFile = open("requirements.txt", "r").read().replace("\n", "<br>")
 	)
 
 @main_page.route('/setting/<setting>')

@@ -3,6 +3,11 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <a href="{{ url_for('mainPage.mainPage__Setting', setting='sessionReset') }}">Reset Session</a>
+    <br>
+        <div>
+            <a href="{{ url_for('mainPage.mainPage__Setting', setting='sessionReset') }}">Reset Session</a><br>
+            현재 IP 에 할당된 Session 을 초기화합니다. ( 다시 로딩 필요 )
+        </div>
+    <br>
 
 {% endblock %}
