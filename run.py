@@ -6,7 +6,7 @@ import random
 from main_page import main_page
 from music_page import music_page
 
-from config import token
+token = random.randrange(1111, 9999)
 
 app = Flask(__name__)
 

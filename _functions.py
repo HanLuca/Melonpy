@@ -30,7 +30,7 @@ def getDayFlow(day):
 	return str(datetime.date.today() - datetime.date(int(day.split(".")[0]), int(day.split(".")[1]), int(day.split(".")[2]))).split()[0]
 
 def getLimitString(string):
-	if len(string) >= 18: return f"{"".join(string[:18])}..."
+	if len(string) >= 18: return f"{''.join(string[:18])}..."
 	else: return string
 
 class GetFromMelon():
