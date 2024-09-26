@@ -8,60 +8,67 @@ from functools import wraps
 from _process import loadMelonChart, loadArtistsChart, loggingData
 
 def checkMelonChartSession():
-	if "melonChart" not in session or "artistsChart" not in session:
-		loggingData('Loading Session')
-		
-		session['melonChart'] = loadMelonChart()
-		session['artistsChart'] = loadArtistsChart(session['melonChart'])
+    if "melonChart" not in session or "artistsChart" not in session:
+        loggingData('Loading Session')
+    
+        session['melonChart'] = loadMelonChart()
+        session['artistsChart'] = loadArtistsChart(session['melonChart'])
 
 def getSongId(songName, melonChart):
-	return [sublist for sublist in melonChart if songName in sublist][0][3]
+    return [sublist for sublist in melonChart if songName in sublist][0][3]
 
 def listNumbers(i: int):
-	return f"{i + 1:03}"
-	
+    return f"{i + 1:03}"
+
 def getSongWithArtistsName(melonChart, artistsName):
-	return [sublist for sublist in melonChart if artistsName in sublist]
+    return [sublist for sublist in melonChart if artistsName in sublist]
 
 def getSongFullWithSongId(melonChart, songid):
-	return [sublist for sublist in melonChart if songid in sublist][0]
+    return [sublist for sublist in melonChart if songid in sublist][0]
 
 def getDayFlow(day):
-	return str(datetime.date.today() - datetime.date(int(day.split(".")[0]), int(day.split(".")[1]), int(day.split(".")[2]))).split()[0]
+    return str(datetime.date.today() - datetime.date(int(day.split(".")[0]), int(day.split(".")[1]), int(day.split(".")[2]))).split()[0]
 
 def getLimitString(string):
-	if len(string) >= 18: return f"{''.join(string[:18])}..."
-	else: return string
+    if len(string) >= 18: return f"{''.join(string[:15])}..."
+    else: return string
 
 class GetFromMelon():
-	def __init__(self, songId, melonChart):
-		self.songId = songId
-		self.melonChart = melonChart
-	
-	def getSongNamed(self):
-		return [sublist for sublist in self.melonChart if self.songId in sublist][0][1]
-	
-	def getLimitSongName(self):
-		return f'{"".join(GetFromMelon(self.songId, self.melonChart).getSongNamed()[:8])}...'
+    def __init__(self, songId, melonChart):
+        self.songId = songId
+        self.melonChart = melonChart
 
-	def getSongArtists(self):
-		return [sublist for sublist in self.melonChart if self.songId in sublist][0][2]
-		
-	def getSongLikes(self):
-		return [sublist for sublist in self.melonChart if self.songId in sublist][0][5]
+    def getSongNamed(self):
+        return [sublist for sublist in self.melonChart if self.songId in sublist][0][1]
 
-	def getIntegerSongLikes(self):
-		return GetFromMelon(self.songId, self.melonChart).getSongLikes().replace(",", "")
+    def getLimitSongName(self):
+        return f'{"".join(GetFromMelon(self.songId, self.melonChart).getSongNamed()[:8])}...'
 
-	def getSongLyric(self):
-		return scrapeMelon.getLyric(self.songId).replace('\n', '<br>')
-
-	def getSongRelease(self):
-		html = requests.get(f"https://www.melon.com/song/detail.htm?songId={self.songId}", headers={"User-Agent": "github.com/hanluca/Melonpy"}).text
+    def getSongArtists(self):
+        return [sublist for sublist in self.melonChart if self.songId in sublist][0][2]
         
-		return BeautifulSoup(html, "lxml").find_all("dd", limit=2)[1].getText()
+    def getSongLikes(self):
+        return [sublist for sublist in self.melonChart if self.songId in sublist][0][5]
 
-	def getSongAlbumImg(self):
-		html = requests.get(f"https://www.melon.com/song/detail.htm?songId={self.songId}", headers={"User-Agent": "github.com/hanluca/Melonpy"}).text
+    def getIntegerSongLikes(self):
+        return GetFromMelon(self.songId, self.melonChart).getSongLikes().replace(",", "")
+
+    def getSongLyric(self):
+        return scrapeMelon.getLyric(self.songId).replace('\n', '<br>')
+
+    def getSongRelease(self):
+        html = requests.get(f"https://www.melon.com/song/detail.htm?songId={self.songId}", headers={"User-Agent": "github.com/hanluca/Melonpy"}).text
         
-		return BeautifulSoup(html, "lxml").find("img", {"onerror" : "WEBPOCIMG.defaultAlbumImg(this);"}).get("src")
+        return BeautifulSoup(html, "lxml").find_all("dd", limit=2)[1].getText()
+
+    def getSongAlbumImg(self):
+        html = requests.get(f"https://www.melon.com/song/detail.htm?songId={self.songId}", headers={"User-Agent": "github.com/hanluca/Melonpy"}).text
+        
+        return BeautifulSoup(html, "lxml").find("img", {"onerror" : "WEBPOCIMG.defaultAlbumImg(this);"}).get("src")
+    
+    def getAroundSongs(self):
+        rank = getSongFullWithSongId(self.melonChart, self.songId)[0]
+
+        if rank <= 2: return self.melonChart[1:6]
+        elif rank >= 99: return self.melonChart[96:101]
+        else: return self.melonChart[rank-2:rank+3]

@@ -1,5 +1,19 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='total.css') }}">
 
+<style>
+
+    .statisticsBox {
+        height: 180px; 
+        display: inline-block; 
+        margin: 25px 0 25px 0; 
+        padding: 20px; 
+        border: 2px solid var(--primary); 
+        border-radius: 10px;
+        vertical-align: top;
+    }
+
+</style>
+
 {% extends 'layout.html' %}
 
 {% block content %}
@@ -8,42 +22,73 @@
         <span style="font-size: 25px; font-weight: bold; color: white;">{{ songName }}</span><br>
         <span style="font-size: 15px; font-weight: 500; color: lightgray;">{{ songRelease }}</span>
     </div>
+    
+    <div style="display: block;">
+        <div class="statisticsBox" style="width: 220px; margin-left: auto;"> <!-- 수정 필요 중앙정렬 -->
+            <span style="font-size: 20px; font-weight: bold; color: black;">비슷한 랭킹의 곡</span><br><br>
+            {% for songs in songAround %}
+                <a href="{{ url_for('musicPage.musicPage__Statistics', songid=songs[3]) }}" style="color: dimgray; font-weight: 500;">
+                    <span class="material-symbols-outlined" style="vertical-align: middle;">arrow_right</span>
 
-    <div style="display: inline-block; margin: 25px; padding: 20px; border: 2px solid var(--primary); border-radius: 10px;">
-        <span style="font-size: 20px; font-weight: bold; color: black;">
-            <span style="vertical-align: middle;" class="material-symbols-outlined">favorite</span> 
-            <span style="vertical-align: middle;">좋아요 통계</span>
-        </span><br>
-        <span style="font-weight: 500;">{{ songLikes }}</span>
+                    {% if songs[1] == songName %}
+                        <span style="vertical-align: middle; text-decoration: underline;">{{ getLimitString(songs[1]) }}</span>
+                    
+                    {% else %}
+                        <span style="vertical-align: middle; text-decoration: none;">{{ getLimitString(songs[1]) }}</span>
 
-        <div style="font-weight: 500;">
-            하루 <span style="color: green;">약 {{ songLikesInt | int // getDayFlow(songRelease) | int }}개</span>의 좋아요가 증가했습니다.
-        </div>
-    </div>
+                    {% endif %}
+                </a><br>
+            {% endfor %}
+        </div>  
 
-    <div style="float: right; margin: 25px; padding: 20px; border: 2px solid var(--primary); border-radius: 10px;">
-        <span style="font-size: 20px; font-weight: bold; color: black;">이 아티스트의 다른 곡</span><br><br>
-        {% for song in getArtistsSongs(session, songArtists) %}
-            {% if getArtistsSongs(session, songArtists) | length <= 1 %}
-                <span class="material-symbols-outlined" style="vertical-align: middle; color: lightgray;">arrow_right</span>
-                <span style="vertical-align: middle; color: dimgray;">존재하지 않습니다.</span>
-                
-            {% else %}
-                {% if song[1] == songName %} <!-- Skip -->
+        <div class="statisticsBox" style="overflow: scroll; width: 220px; margin-left: 25px;">
+            <span style="font-size: 20px; font-weight: bold; color: black;">이 아티스트의 다른 곡</span><br><br>
+            {% for song in getArtistsSongs(session, songArtists) %}
+                {% if getArtistsSongs(session, songArtists) | length <= 1 %}
+                    <span class="material-symbols-outlined" style="vertical-align: middle; color: lightgray;">arrow_right</span>
+                    <span style="vertical-align: middle; color: dimgray;">존재하지 않습니다.</span>
+                    
                 {% else %}
-                    <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="color: dimgray; font-weight: 500;">
-                        <span class="material-symbols-outlined" style="vertical-align: middle;">arrow_right</span>
-                        <span style="vertical-align: middle;">{{ getLimitString(song[1]) }}</span>
-                    </a><br>
+                    {% if song[1] == songName %} 
+                        <!-- Skip -->
+
+                    {% else %}
+                        <a href="{{ url_for('musicPage.musicPage__Lyric', songid=song[3]) }}" style="color: dimgray; font-weight: 500;">
+                            <span class="material-symbols-outlined" style="vertical-align: middle;">arrow_right</span>
+                            <span style="vertical-align: middle;">{{ getLimitString(song[1]) }}</span>
+                        </a><br>
+
+                    {% endif %}
 
                 {% endif %}
+            {% endfor %}
+        </div>
 
-            {% endif %}
-        {% endfor %}
-    </div>
+        <!-- CONTENT -->
+        <div class="statisticsBox" style="margin-left: 25px;">
+            <span style="font-size: 20px; font-weight: bold; color: black;">
+                <span style="vertical-align: middle;" class="material-symbols-outlined">favorite</span> 
+                <span style="vertical-align: middle;">좋아요 통계</span>
+            </span><br>
+            <span style="font-weight: 500;">{{ songLikes }}</span>
 
-    <div>
-        
+            <div style="font-weight: 500;">
+                하루 <span style="color: green;">약 {{ songLikesInt | int // getDayFlow(songRelease) | int }}개</span>의 좋아요가 증가했습니다.
+            </div>
+        </div>
+
+        <div class="statisticsBox" style="margin-left: 25px; margin-right: auto;">
+            <span style="font-size: 20px; font-weight: bold; color: black;">
+                <span style="vertical-align: middle;" class="material-symbols-outlined">favorite</span> 
+                <span style="vertical-align: middle;">주변곡 비교</span>
+            </span><br>
+            <span style="font-weight: 500;">{{ songLikes }}</span>
+
+            <div style="font-weight: 500;">
+                하루 <span style="color: green;">약 {{ songLikesInt | int // getDayFlow(songRelease) | int }}개</span>의 좋아요가 증가했습니다.
+            </div>
+        </div>
+        <!-- CONTENT -->
     </div>
     
 {% endblock %}
