@@ -24,7 +24,7 @@
     </div>
     
     <div style="display: block;">
-        <div class="statisticsBox" style="width: 220px; margin-left: auto;"> <!-- 수정 필요 중앙정렬 -->
+        <div class="statisticsBox" style="width: 220px; margin-left: auto;"> 
             <span style="font-size: 20px; font-weight: bold; color: black;">비슷한 랭킹의 곡</span><br><br>
             {% for songs in songAround %}
                 <a href="{{ url_for('musicPage.musicPage__Statistics', songid=songs[3]) }}" style="color: dimgray; font-weight: 500;">
@@ -41,7 +41,7 @@
             {% endfor %}
         </div>  
 
-        <div class="statisticsBox" style="overflow: scroll; width: 220px; margin-left: 25px;">
+        <div class="statisticsBox" style="overflow: scroll; width: 220px; margin-left: 25px;"> <!-- 중앙정렬 수정 필요 -->
             <span style="font-size: 20px; font-weight: bold; color: black;">이 아티스트의 다른 곡</span><br><br>
             {% for song in getArtistsSongs(session, songArtists) %}
                 {% if getArtistsSongs(session, songArtists) | length <= 1 %}
